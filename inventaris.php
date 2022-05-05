@@ -40,7 +40,7 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" style="color:white">Home</a>
+                    <a class="nav-link active" aria-current="page" href="mainpage.php" style="color:white">Home</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="inventaris.php" style="color:white">Inventaris</a>
@@ -64,14 +64,14 @@ session_start();
             <div class="bg-img-fluid">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="color:gainsboro">Dashboard</h1>
+                        <h1 class="mt-4" style="color:gainsboro">Inventaris</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active" style="color: burlywood">NAMA KARYAWAN</li>
+                            <li class="breadcrumb-item active" style="color: burlywood">Kantor Syaco</li>
                         </ol>
                         <div class="card mb-4"  style="background-color : cornsilk; opacity:0.9">
                             <div class="card-header" style="background-color : navajowhite">
                                 <i class="fas fa-table me-1"></i>
-                                Data Penjualan
+                                Data Inventaris
                             </div>
                             <div class="card-body">
                                 <table id="example" >
