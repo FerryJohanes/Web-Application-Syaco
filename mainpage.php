@@ -1,6 +1,12 @@
 <?php
 include ("db.php");
 session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,8 +58,8 @@ session_start();
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: transparent; border-color: white">
                         <li><a class="dropdown-item" href="#" style="color:white" >Beri Ulasan</a></li>
                         <li><a class="dropdown-item" href="#" style="color:white">Ganti Akun</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" style="color:white">Logout</a></li>
+                        <li><hr class="dropdown-divider" style="color:white"></li>
+                        <li><a class="dropdown-item" href="logout.php" style="color:white">Logout</a></li>
                     </ul>
                     </li>
                 </ul>
@@ -66,7 +72,8 @@ session_start();
                     <div class="container-fluid px-4">
                         <h1 class="mt-4" style="color:gainsboro">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active" style="color: burlywood">NAMA KARYAWAN</li>
+                            <li class="breadcrumb-item active" style="color: burlywood">Selamat Datang, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
+                            </li>
                         </ol>
                         <div class="card mb-4"  style="background-color : cornsilk; opacity:0.95">
                             <div class="card-header" style="background-color : navajowhite">
@@ -86,7 +93,7 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = mysqli_query($conn,"SELECT * from produk");
+                                        $query = mysqli_query($mysqli,"SELECT * from produk");
                                         while($value = mysqli_fetch_array($query)){
                                         ?>
                                         <tr style="background-color : oldlace">
@@ -122,7 +129,7 @@ session_start();
                     </div>
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <divs style="color:white">Kelompok B Kelas F</div>
+                            <div style="color:white">Kelompok B Kelas F</div>
                             <div>
                                 <a href="https://github.com/FerryJohanes/Web-Application-Syaco/">Source Code Github</a>
                             </div>
@@ -137,8 +144,8 @@ session_start();
         } );
         </script>
         <?php
-        $nama_pr = mysqli_query($conn, "SELECT nama_produk FROM produk order by id_produk asc");
-        $jual = mysqli_query($conn, "SELECT penjualan FROM produk order by id_produk asc");
+        $nama_pr = mysqli_query($mysqli, "SELECT nama_produk FROM produk order by id_produk asc");
+        $jual = mysqli_query($mysqli, "SELECT penjualan FROM produk order by id_produk asc");
         ?>
         <script>
             var ctx = document.getElementById("myChart");
