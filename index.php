@@ -1,6 +1,6 @@
 <?php
 include ("db.php");
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -12,112 +12,124 @@ include ("db.php");
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Syaco-Admin</title>
+        <!-- Script Start -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" mdeia="screen" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <link href="css/styles.css" rel="stylesheet" />
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">Syaco</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+        <!-- Script End -->
     </head>
     <body>
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">SELAMAT DATANG</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">NAMA KARYAWAN</li>
-                    </ol>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Data Penjualan
-                        </div>
-                        <div class="card-body">
-                            <table id="example">
-                                <thead>
-                                    <tr>
-                                        <th>Produk</th>
-                                        <th>Stok Produk</th>
-                                        <th>Harga Produk</th>
-                                        <th>Tanggal Ditambahkan</th>
-                                        <th>Penjualan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $query = mysqli_query($conn,"SELECT * from produk");
-                                    $count = 1;
-                                    while($value = mysqli_fetch_array($query)){
-                                    ?>
-                                    <tr>
-                                        <td><?=$value["nama_produk"]?></td>
-                                        <td><?=$value["jumlah_produk"]?></td>
-                                        <td><?=$value["harga_produk"]?></td>
-                                        <td><?=$value["tanggal_ditambahkan"]?></td>
-                                        <td><?=$value["penjualan"]?></td>
-                                        <!-- foreach ($result as $key => $value) { -->
-                                        <!-- echo "<tr>"; -->
-                                        <!-- echo "<th>".$count++."</th>";
-                                        echo "<th>".$value['nama_produk']."</th>";
-                                        echo "<th>".$value['jumlah_produk']."</th>";
-                                        echo "<th>".$value['harga_produk']."</th>";
-                                        echo "<th>".$value['tanggal_ditambahkan']."</th>";
-                                        echo "<th>".$value['penjualan']."</th>"; -->
-                                    <?php } ?>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card mb-4" style="background-color : bisque ">
-                        <div class="card-header" style="background-color : ">
-                            <i class="fas fa-chart-area "></i>
+        <!-- Background image -->
+        <div class="bg-image img-fluid" 
+        style="background-image: url('https://img.besthqwallpapers.com/Uploads/29-9-2020/142270/coffee-beans-background-with-coffee-falling-coffee-grains-coffee-concepts-coffee-background.jpg');
+        height: 100vh 
+        background-position:top">
+        <!-- Background image -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 28px;font-family:magneto; color:white"><img src="https://mimindonesia.com/wp-content/uploads/2021/07/cropped-Untitled-1.png" alt="logo syaco?" style="height:80px">SyacoMa</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#" style="color:white">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#" style="color:white">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " style="color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pengaturan
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: transparent; border-color: white">
+                        <li><a class="dropdown-item" href="#" style="color:white" >Beri Ulasan</a></li>
+                        <li><a class="dropdown-item" href="#" style="color:white">Ganti Akun</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" style="color:white">Logout</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+            <div class="bg-img-fluid">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4" style="color:gainsboro">SELAMAT DATANG</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active" style="color: burlywood">NAMA KARYAWAN</li>
+                        </ol>
+                        <div class="card mb-4"  style="background-color : cornsilk; opacity:0.85">
+                            <div class="card-header" style="background-color : navajowhite">
+                                <i class="fas fa-table me-1"></i>
                                 Data Penjualan
-                        </div>
+                            </div>
                             <div class="card-body">
-                                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                                <table id="example" >
+                                    <thead>
+                                        <tr>
+                                            <th>Produk</th>
+                                            <th>Stok Produk</th>
+                                            <th>Harga Produk</th>
+                                            <th>Tanggal Ditambahkan</th>
+                                            <th>Penjualan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = mysqli_query($conn,"SELECT * from produk");
+                                        while($value = mysqli_fetch_array($query)){
+                                        ?>
+                                        <tr style="background-color : oldlace">
+                                            <td><?=$value["nama_produk"]?></td>
+                                            <td><?=$value["jumlah_produk"]?></td>
+                                            <td><?=$value["harga_produk"]?></td>
+                                            <td><?=$value["tanggal_ditambahkan"]?></td>
+                                            <td><?=$value["penjualan"]?></td>
+                                            <!-- foreach ($result as $key => $value) { -->
+                                            <!-- echo "<tr>"; -->
+                                            <!-- echo "<th>".$count++."</th>";
+                                            echo "<th>".$value['nama_produk']."</th>";
+                                            echo "<th>".$value['jumlah_produk']."</th>";
+                                            echo "<th>".$value['harga_produk']."</th>";
+                                            echo "<th>".$value['tanggal_ditambahkan']."</th>";
+                                            echo "<th>".$value['penjualan']."</th>"; -->
+                                        <?php } ?>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-4" style="background-color : oldlace ; opacity:0.85">
+                            <div class="card-header" style="background-color : navajowhite">
+                                <i class="fas fa-chart-area "></i>
+                                    Grafik Penjualan
+                            </div>
+                                <div class="card-body">
+                                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Kelompok B Kelas F</div>
-                        <div>
-                            <a href="#">Link Source Code Github</a>
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <divs style="color:white">Kelompok B Kelas F</div>
+                            <div>
+                                <a href="https://github.com/FerryJohanes/Web-Application-Syaco/">Source Code Github</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>
-
+                </main>
+            </div>
         </div>
         <script>
         $(document).ready(function() {
@@ -179,6 +191,5 @@ include ("db.php");
                 }
             });
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>
