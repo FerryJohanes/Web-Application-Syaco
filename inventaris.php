@@ -52,8 +52,8 @@ session_start();
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: transparent; border-color: white">
                         <li><a class="dropdown-item" href="#" style="color:white" >Beri Ulasan</a></li>
                         <li><a class="dropdown-item" href="#" style="color:white">Ganti Akun</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" style="color:white">Logout</a></li>
+                        <li><hr class="dropdown-divider" style="color:white"></li>
+                        <li><a class="dropdown-item" href="logout.php" style="color:white">Logout</a></li>
                     </ul>
                     </li>
                 </ul>
@@ -85,7 +85,7 @@ session_start();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = mysqli_query($conn,"SELECT * from inventaris");
+                                        $query = mysqli_query($mysqli,"SELECT * from inventaris");
                                         $counter = 1;
                                         while($value = mysqli_fetch_array($query)){
                                         ?>
@@ -117,8 +117,8 @@ session_start();
         } );
         </script>
         <?php
-        $nama_pr = mysqli_query($conn, "SELECT nama_produk FROM produk order by id_produk asc");
-        $jual = mysqli_query($conn, "SELECT penjualan FROM produk order by id_produk asc");
+        $nama_pr = mysqli_query($mysqli, "SELECT nama_produk FROM produk order by id_produk asc");
+        $jual = mysqli_query($mysqli, "SELECT penjualan FROM produk order by id_produk asc");
         ?>
     </body>
 </html>
