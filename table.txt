@@ -1,0 +1,50 @@
+CREATE TABLE ulasan(
+	id_ulasan INT(6) AUTO_INCREMENT PRIMARY KEY,
+        ulasan Varchar (255)
+)
+
+CREATE TABLE inventaris (
+	id_barang INT(6) AUTO_INCREMENT PRIMARY KEY,
+	nama_barang VARCHAR(255),
+	jumlah_barang INT(6),
+	tanggal_dibeli DATE)
+
+CREATE TABLE users(
+	id INT(6) AUTO_INCREMENT PRIMARY KEY,
+	nama VARCHAR(50),
+	jenis_kelamin VARCHAR(50),
+	username VARCHAR(50) UNIQUE,
+	password VARCHAR(255),
+	email VARCHAR(40),
+	alamat VARCHAR(50),
+	no_telpon INT(13) )
+
+CREATE TABLE keuangan (
+	id_keuangan INT(255) AUTO_INCREMENT PRIMARY KEY,
+	modal INT (255),
+	tanggal DATE,
+	pemasukan INT (255),
+	pengeluaran INT (255) )
+
+CREATE TABLE produk (
+	id_produk INT(6) AUTO_INCREMENT PRIMARY KEY,
+	nama_produk VARCHAR (255),
+	tanggal_ditambahkan DATE,
+	jumlah_produk INT(6),
+	harga_produk INT(35),
+	penjualan INT(6) )
+
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE `cart` (
+  `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL DEFAULT '0',
+  `order_name` varchar(1000) NOT NULL DEFAULT '',
+  `order_price` double NOT NULL DEFAULT '0',
+  `order_quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `order_total` double NOT NULL DEFAULT '0',
+  `order_status` varchar(45) NOT NULL DEFAULT '',
+  `order_date` date NOT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `FK_orderdetails_1` (`id`),
+  CONSTRAINT `FK_orderdetails_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
